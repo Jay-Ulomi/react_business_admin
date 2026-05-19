@@ -9,7 +9,7 @@ export function ContextSwitcher() {
   const selectedBranchId = selectedContext?.branchId ?? branches[0]?.id ?? ''
 
   const branchOptions = useMemo(
-    () => branches.filter((branch) => branch.isActive).map((branch) => ({ id: branch.id, name: branch.name })),
+    () => branches.filter((branch) => branch.active ?? branch.isActive).map((branch) => ({ id: branch.id, name: branch.name })),
     [branches],
   )
 
