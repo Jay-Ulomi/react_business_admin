@@ -43,9 +43,9 @@ export function LoginPage() {
   return (
     <div className="grid min-h-screen place-items-center px-4">
       <div className="w-full max-w-md rounded-3xl border border-emerald-100 bg-white/95 p-6 shadow-sm">
-        <p className="text-xs uppercase tracking-[0.2em] text-emerald-700">Business Admin</p>
-        <h1 className="mt-2 font-display text-2xl text-slate-900">Sign in to POS Console</h1>
-        <p className="mt-1 text-sm text-slate-500">Use your tenant owner or business admin account.</p>
+        <img src="/logo.png" alt="Aduinola" className="mx-auto mb-4 h-12" />
+        <h1 className="mt-2 text-center font-display text-2xl text-slate-900">Business Admin</h1>
+        <p className="mt-1 text-center text-sm text-slate-500">Sign in with your business account.</p>
 
         <form className="mt-6 space-y-4" onSubmit={onSubmit}>
           <label className="block text-sm text-slate-700">
