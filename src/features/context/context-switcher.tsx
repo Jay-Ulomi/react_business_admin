@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react'
 import { useBusinessContext } from './business-context'
+import { useToast } from '../ui/toast-context'
 
 export function ContextSwitcher() {
   const { businessAccesses, branches, selectedContext, selectContext, isLoading } = useBusinessContext()
+  const { pushToast } = useToast()
   const [pending, setPending] = useState(false)
 
   const selectedBusinessId = selectedContext?.businessId ?? businessAccesses[0]?.businessId ?? ''
@@ -18,6 +20,9 @@ export function ContextSwitcher() {
     setPending(true)
     try {
       await selectContext(businessId, branchId)
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to switch branch'
+      pushToast('error', message)
     } finally {
       setPending(false)
     }
