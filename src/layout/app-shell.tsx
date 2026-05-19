@@ -158,60 +158,51 @@ export function AppShell() {
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-20 flex w-full flex-wrap items-center justify-between gap-3 border-b border-emerald-100 bg-white/95 px-4 py-3 backdrop-blur md:px-6">
-        <div className="flex min-w-0 items-center gap-3">
+      <header className="sticky top-0 z-20 flex w-full items-center justify-between gap-2 border-b border-emerald-100 bg-white/95 px-4 py-2.5 backdrop-blur md:px-6">
+        {/* Left: hamburger (mobile) + branch name */}
+        <div className="flex min-w-0 items-center gap-2">
           <button
             type="button"
             aria-label="Open navigation menu"
             onClick={() => setMobileNavOpen(true)}
-            className="grid h-9 w-9 place-items-center rounded-md border border-emerald-100 bg-white text-slate-700 hover:bg-emerald-50 md:hidden"
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-emerald-100 bg-white text-slate-700 hover:bg-emerald-50 md:hidden"
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M4 7h16M4 12h16M4 17h16" />
             </svg>
           </button>
           <div className="min-w-0">
-            <p className="text-xs uppercase tracking-[0.14em] text-slate-500">Business Admin</p>
-            <h1 className="truncate text-lg font-semibold text-slate-900 md:text-xl">
+            <h1 className="truncate text-sm font-semibold text-slate-900 leading-tight">
               {selectedContext?.branchName ?? 'Select Branch'}
             </h1>
-            <p className="truncate text-xs text-slate-500">{selectedContext?.businessName ?? 'No business selected'}</p>
+            <p className="truncate text-[11px] text-slate-400 leading-tight">{selectedContext?.businessName ?? 'No business selected'}</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 md:gap-3">
+        {/* Right: context switcher + user pill */}
+        <div className="flex shrink-0 items-center gap-2">
           <ContextSwitcher />
-          <button
-            type="button"
-            aria-label="Notifications"
-            className="relative grid h-9 w-9 place-items-center rounded-md border border-emerald-100 bg-white text-slate-600 hover:bg-emerald-50"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 1 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
-              <path d="M9 17a3 3 0 0 0 6 0" />
-            </svg>
-            <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-emerald-600" />
-          </button>
-          <button
-            type="button"
-            aria-label="Profile"
-            className="hidden items-center gap-2 rounded-md border border-emerald-200 bg-emerald-50 px-2 py-1.5 text-left text-emerald-900 hover:bg-emerald-100 sm:flex"
-          >
-            <span className="grid h-7 w-7 place-items-center rounded-full border border-emerald-200 bg-emerald-100 text-xs font-semibold text-emerald-800">
+          <div className="flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50 px-2 py-1">
+            <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-emerald-700 text-[10px] font-bold text-white">
               {profileInitial}
             </span>
-            <span className="max-w-[180px] truncate text-xs font-semibold">{session?.email ?? 'Profile'}</span>
-          </button>
-          <div className="grid h-9 w-9 place-items-center rounded-full border border-emerald-200 bg-emerald-100 text-xs font-semibold text-emerald-800 sm:hidden">
-            {profileInitial}
+            <span className="hidden max-w-[140px] truncate text-xs font-medium text-emerald-900 sm:block">
+              {session?.email ?? 'Profile'}
+            </span>
+            <button
+              type="button"
+              onClick={logout}
+              aria-label="Logout"
+              title="Logout"
+              className="ml-1 grid h-5 w-5 shrink-0 place-items-center rounded text-slate-400 hover:text-red-500 transition-colors"
+            >
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={logout}
-            className="rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-          >
-            Logout
-          </button>
         </div>
       </header>
 

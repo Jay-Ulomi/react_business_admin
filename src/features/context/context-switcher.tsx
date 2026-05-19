@@ -24,9 +24,9 @@ export function ContextSwitcher() {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex items-center gap-1.5">
       <select
-        className="rounded-lg border border-slate-200 bg-white px-2 py-2 text-sm text-slate-700"
+        className="max-w-[140px] rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-400"
         value={selectedBusinessId}
         onChange={(event) => {
           const nextBusinessId = event.target.value
@@ -43,7 +43,7 @@ export function ContextSwitcher() {
       </select>
 
       <select
-        className="rounded-lg border border-slate-200 bg-white px-2 py-2 text-sm text-slate-700"
+        className="max-w-[120px] rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-400"
         value={selectedBranchId}
         onChange={(event) => {
           void applySelection(selectedBusinessId, event.target.value)
