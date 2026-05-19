@@ -23,11 +23,8 @@ export function ContextSwitcher() {
     }
   }
 
-  const selectedBranch = branchOptions.find((b) => b.id === selectedBranchId)
-
   return (
     <div className="flex items-center gap-1.5">
-      {/* Business selector — hidden when only one option */}
       {businessAccesses.length > 1 && (
         <select
           aria-label="Select business"
@@ -48,8 +45,7 @@ export function ContextSwitcher() {
         </select>
       )}
 
-      {/* Branch selector — hidden when only one option */}
-      {branchOptions.length > 1 ? (
+      {branchOptions.length > 1 && (
         <select
           aria-label="Select branch"
           className="w-[120px] rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-400 disabled:opacity-50"
@@ -65,13 +61,6 @@ export function ContextSwitcher() {
             </option>
           ))}
         </select>
-      ) : (
-        /* Single branch — show as a plain label, no dropdown clutter */
-        selectedBranch && businessAccesses.length <= 1 ? null : (
-          <span className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs text-slate-500 truncate max-w-[120px]">
-            {selectedBranch?.name ?? '—'}
-          </span>
-        )
       )}
     </div>
   )
